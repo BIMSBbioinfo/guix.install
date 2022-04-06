@@ -1,0 +1,21 @@
+Package: guix.install
+Type: Package
+Title: Install R Packages with GNU Guix
+Version: 1.0.0
+Date: 2022-04-06
+Author: Ricardo Wurmus
+Maintainer: Ricardo Wurmus <ricardo.wurmus@mdc-berlin.de>
+Description: This R package provides a single procedure guix.install,
+  which allows R users to install R packages via Guix right from within
+  their running R session.  If the requested R package does not exist
+  in Guix at this time, the package and all its missing dependencies
+  will be imported recursively and the generated package definitions
+  will be written to ~/.Rguix/packages.scm.  This record of imported
+  packages can be used later to reproduce the environment, and to add
+  the packages in question to a proper Guix channel (or Guix itself).
+  guix.install not only supports installing packages from CRAN, but
+  also from Bioconductor or even arbitrary git or mercurial
+  repositories, replacing the need for installation via devtools.
+Depends: R (>= 3.6.0)
+Imports: RUnit
+License: GPL (>= 3)
