@@ -19,3 +19,4 @@ Description: This R package provides a single procedure guix.install,
 Depends: R (>= 3.6.0)
 Imports: RUnit
 License: GPL (>= 3)
+BugReports: https://github.com/BIMSBbioinfo/guix.install/issues
