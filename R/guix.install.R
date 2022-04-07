@@ -18,6 +18,14 @@
 
 guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL)
 {
+    ## Abort if we can't execute Guix.
+    error <- suppressWarnings (system2 (guix, c("describe"), stderr=NULL, stdout=NULL))
+    if (error == 127) {
+        stop (paste("Failed to run Guix command ", guix, ".  Is it on PATH?"))
+    } else if (error != 0) {
+        stop (paste("Failed to run Guix command ", guix, ".  Error code: ", error))
+    }
+
     if (is.null (profile)) {
         ## Use the default profile unless otherwise specified.
         guix_profile <- Sys.getenv ("GUIX_PROFILE", unset = NA)
