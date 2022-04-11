@@ -33,8 +33,8 @@ Courtès L., Wurmus R. (2015) Reproducible and User-Controlled Software Environm
 \keyword{ utilities }
 \examples{
 \dontrun{
-guix.install("methylKit")
-guix.install("methylKit", profile="/home/foo/custom/.guix-profile")
-guix.install("methylKit", guix="/gnu/remote/bin/guix")
+guix.install("methylKit", cacheFile=tempfile())
+guix.install("methylKit", profile="/home/foo/custom/.guix-profile", cacheFile=tempfile())
+guix.install("methylKit", guix="/gnu/remote/bin/guix", cacheFile=tempfile())
 }
 }

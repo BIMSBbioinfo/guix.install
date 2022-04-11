@@ -47,7 +47,7 @@ guix.install(package, profile = NULL, guix = "guix", archive = NULL,
   }
   \item{cacheFile}{
     The absolute file name of the file where the imported package
-  definitions should be recorded.  When \code{NULL} this is \code{$HOME/.Rguix/packages.scm}.
+    definitions should be recorded.  When \code{NULL} this is \code{$HOME/.Rguix/packages.scm}.
   }
 }
 \value{
@@ -59,9 +59,9 @@ guix.install(package, profile = NULL, guix = "guix", archive = NULL,
 
 \examples{
 \dontrun{
-guix.install("methylKit")
-guix.install("methylKit", profile="/home/foo/custom/.guix-profile")
-guix.install("methylKit", guix="/gnu/remote/bin/guix")
+guix.install("methylKit", cacheFile=tempfile())
+guix.install("methylKit", profile="/home/foo/custom/.guix-profile", cacheFile=tempfile())
+guix.install("methylKit", guix="/gnu/remote/bin/guix", cacheFile=tempfile())
 }
 }
 
