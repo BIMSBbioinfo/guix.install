@@ -22,7 +22,8 @@
   \href{https://github.com/guix-science/guix-science}{Guix Science project}.
 }
 \usage{
-guix.install(package, profile = NULL, guix = "guix", archive = NULL)
+guix.install(package, profile = NULL, guix = "guix", archive = NULL,
+  cacheFile = NULL)
 }
 \arguments{
   \item{package}{
@@ -43,6 +44,10 @@ guix.install(package, profile = NULL, guix = "guix", archive = NULL)
     This argument is used to override the Guix importer's \code{archive}
     option, e.g. to explicitly specify that the package should be imported
     from Bioconductor or from a Mercurial repository.
+  }
+  \item{cacheFile}{
+    The absolute file name of the file where the imported package
+  definitions should be recorded.  When \code{NULL} this is \code{$HOME/.Rguix/packages.scm}.
   }
 }
 \value{

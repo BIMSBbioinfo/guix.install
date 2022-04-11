@@ -16,7 +16,7 @@
 ## TODO:
 ## - allow installation of more than one package
 
-guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL)
+guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL, cacheFile = NULL)
 {
     ## Abort if we can't execute Guix.
     error <- suppressWarnings (system2 (guix, c("describe"), stderr=NULL, stdout=NULL))
@@ -43,7 +43,11 @@ guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL
     }
 
     ## Location of on-the-fly generated packages
-    scratch <- paste (Sys.getenv ("HOME"), ".Rguix", "packages.scm", sep = "/")
+    if (is.null (cacheFile)) {
+        scratch <- paste (Sys.getenv ("HOME"), ".Rguix", "packages.scm", sep = "/")
+    } else {
+        scratch <- cacheFile
+    }
 
     ## split package path, put scratch location first
     package_path <- NULL
