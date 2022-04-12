@@ -53,7 +53,7 @@ guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL
     package_path <- NULL
     old_package_path <- Sys.getenv ("GUIX_PACKAGE_PATH")
     entries <- strsplit (old_package_path, ":")[[1]]
-    package_path <- paste (unique (c(dirname (scratch), entries)), sep = ":")
+    package_path <- paste (unique (c(dirname (scratch), entries)), collapse = ":")
     Sys.setenv (GUIX_PACKAGE_PATH=package_path)
 
     is_url <- length (grep ("^https?://", package)) > 0
