@@ -20,3 +20,4 @@ Depends: R (>= 3.6.0)
 Imports: RUnit
 License: GPL (>= 3)
 BugReports: https://github.com/BIMSBbioinfo/guix.install/issues
+URL: https://github.com/BIMSBbioinfo/guix.install
