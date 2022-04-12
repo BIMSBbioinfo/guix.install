@@ -16,7 +16,7 @@
 ## TODO:
 ## - allow installation of more than one package
 
-guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL, cacheFile = NULL)
+guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL, cacheFile = NULL, stdout = "", stderr = "")
 {
     ## Abort if we can't execute Guix.
     error <- suppressWarnings (system2 (guix, c("describe"), stderr=NULL, stdout=NULL))
@@ -122,10 +122,19 @@ guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL
 
     ## Install the package.
     error <- system2 (guix, c("package", paste ("--profile", profile, sep = "="),
-                              "--install", guix_name))
+                              "--install", guix_name),
+                      stderr = stderr,
+                      stdout = stdout)
+
+    # When output streams are captured we need to rely on the "status"
+    # attribute.  Otherwise we can use the numerical value of "error"
+    # directly.
+    if ((!is.null (attr(error, "status"))) ||
+        (is.numeric(error) && error != 0)) {
+        stop (paste("Failed to install imported package ", guix_name))
+    }
 
     ## Extend the R load path.
-    if (error == 0) {
-        .libPaths (paste (profile, "site-library", sep = "/"))
-    }
+    .libPaths (paste (profile, "site-library", sep = "/"))
+    error
 }

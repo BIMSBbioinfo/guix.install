@@ -23,7 +23,7 @@
 }
 \usage{
 guix.install(package, profile = NULL, guix = "guix", archive = NULL,
-  cacheFile = NULL)
+  cacheFile = NULL, stdout = "", stderr = "")
 }
 \arguments{
   \item{package}{
@@ -48,6 +48,16 @@ guix.install(package, profile = NULL, guix = "guix", archive = NULL,
   \item{cacheFile}{
     The absolute file name of the file where the imported package
     definitions should be recorded.  When \code{NULL} this is \code{$HOME/.Rguix/packages.scm}.
+  }
+  \item{stdout}{
+    Use this argument to redirect or silence Guix output printed to the
+    standard output stream.  The default value is \code{""},
+    causing all Guix messages to be printed to the console.
+  }
+  \item{stderr}{
+    Use this argument to redirect or silence Guix output printed to
+    the standard error stream.  The default value is \code{""},
+    causing all Guix errors to be printed to the console.
   }
 }
 \value{
