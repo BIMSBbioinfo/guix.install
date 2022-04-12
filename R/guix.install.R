@@ -63,8 +63,8 @@ guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL
         guix_name <- paste0 ("r-", gsub ("[^a-z0-9]", "-", tolower (package)))
 
         ## Does the package already exist?
-        error <- system2 (guix, c("show", guix_name),
-                          stdout = NULL, stderr = NULL)
+        error <- suppressWarnings (system2 (guix, c("show", guix_name),
+                                            stdout = NULL, stderr = NULL))
     }
     
     ## Attempt to import the package
@@ -121,10 +121,10 @@ guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL
     }
 
     ## Install the package.
-    error <- system2 (guix, c("package", paste ("--profile", profile, sep = "="),
-                              "--install", guix_name),
-                      stderr = stderr,
-                      stdout = stdout)
+    error <- suppressWarnings (system2 (guix, c("package", paste ("--profile", profile, sep = "="),
+                                                "--install", guix_name),
+                                        stderr = stderr,
+                                        stdout = stdout))
 
     # When output streams are captured we need to rely on the "status"
     # attribute.  Otherwise we can use the numerical value of "error"
