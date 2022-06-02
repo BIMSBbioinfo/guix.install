@@ -21,9 +21,9 @@ guix.install <- function (package, profile = NULL, guix = "guix", archive = NULL
     ## Abort if we can't execute Guix.
     error <- suppressWarnings (system2 (guix, c("describe"), stderr=NULL, stdout=NULL))
     if (error == 127) {
-        stop (paste("Failed to run Guix command ", guix, ".  Is it on PATH?"))
+        stop (paste0("Failed to run Guix command '", guix, "'.  Is it on PATH?"))
     } else if (error != 0) {
-        stop (paste("Failed to run Guix command ", guix, ".  Error code: ", error))
+        stop (paste0("Failed to run Guix command '", guix, "'.  Error code: ", error))
     }
 
     if (is.null (profile)) {
